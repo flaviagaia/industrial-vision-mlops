@@ -1,5 +1,7 @@
 # SteelVision — inspeção visual de defeitos em aço
 
+**Publicações:** [GitHub](https://github.com/flaviagaia/industrial-vision-mlops) · [Notebook no Kaggle](https://www.kaggle.com/code/flaviagg/steelvision-steel-defects-with-pytorch-u-net)
+
 Projeto de portfólio de **Flávia Gaia** para praticar segmentação de imagens industriais com PyTorch. O pipeline lê as anotações Severstal, separa os dados, treina uma U-Net compacta, seleciona o checkpoint na validação e produz métricas por classe e análise visual dos erros.
 
 **Estado atual:** código implementado e fluxo validável com dados geométricos sintéticos. O treinamento e a avaliação no Severstal precisam ser executados após adicionar os dados da competição. Nenhuma métrica sintética representa desempenho em aço real. Este projeto não foi implantado em produção.
