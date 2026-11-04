@@ -60,6 +60,7 @@ steelvision predict --image data/severstal/train_images/IMAGEM.jpg --checkpoint 
 
 - **Segmentação multirrótulo:** quatro canais independentes. As classes podem coexistir na mesma imagem. Sigmoid e BCEWithLogitsLoss são usadas, em vez de softmax sobre classes mutuamente exclusivas.
 - **U-Net compacta:** encoder/decoder com conexões de atalho e GroupNorm, treinada do zero. Não exige pesos externos. É um baseline, sem promessa de desempenho competitivo.
+- **Execução em GPU:** precisão mista CUDA com GradScaler; a loss e suas reduções espaciais permanecem em FP32 para evitar overflow. O notebook usa dois workers persistentes e transferência de dados com memória fixada. Logs de progresso são emitidos a cada 100 lotes.
 - **Loss:** BCE + soft Dice para combinar supervisão por pixel e sobreposição das máscaras. Os parâmetros são fixados antes do teste.
 - **RLE:** índices começam em 1 e percorrem as colunas. Máscaras são decodificadas nas dimensões originais antes do redimensionamento.
 - **Pré-processamento:** RGB em `[0, 1]`, resize bilinear da imagem e nearest-neighbor das máscaras. Padrão 128 × 800, mantendo a proporção das imagens Severstal de 256 × 1600. A redução pode apagar defeitos pequenos; essa limitação aparece no relatório.

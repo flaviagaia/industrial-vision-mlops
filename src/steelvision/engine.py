@@ -33,6 +33,7 @@ class Config:
     threshold: float = 0.5
     device: str = "auto"
     data_kind: str = "severstal"
+    mixed_precision: bool = True
 
 
 def choose_device(value="auto"):
@@ -73,7 +74,8 @@ def loader(data_dir, manifest, split, config, shuffle=False):
         num_workers=config.num_workers,
         worker_init_fn=seed_worker,
         generator=generator,
-        pin_memory=config.device == "cuda",
+        pin_memory=choose_device(config.device).type == "cuda",
+        persistent_workers=config.num_workers > 0,
     )
 
 
@@ -115,6 +117,8 @@ def train(data_dir, manifest, output_dir, config):
     device = choose_device(config.device)
     model = UNet(config.base_channels).to(device)
     optimizer = torch.optim.AdamW(model.parameters(), lr=config.learning_rate)
+    use_amp = config.mixed_precision and device.type == "cuda"
+    scaler = torch.amp.GradScaler("cuda", enabled=use_amp)
     train_batches = loader(data_dir, manifest, "train", config, shuffle=True)
     val_batches = loader(data_dir, manifest, "val", config)
     metadata = {
@@ -125,6 +129,7 @@ def train(data_dir, manifest, output_dir, config):
         "numpy": np.__version__,
         "git_commit": git_revision(),
         "manifest_sha256": sha256_file(manifest),
+        "amp_enabled": use_amp,
         "note": "Synthetic smoke test; not a Severstal result"
         if config.data_kind == "synthetic"
         else "Baseline; no production deployment claim",
@@ -137,16 +142,34 @@ def train(data_dir, manifest, output_dir, config):
     for epoch in range(1, config.epochs + 1):
         model.train()
         loss_sum = count = 0
-        for image, target, _ in train_batches:
-            image, target = image.to(device), target.to(device)
+        epoch_started = time.perf_counter()
+        for step, (image, target, _) in enumerate(train_batches, start=1):
+            image = image.to(device, non_blocking=True)
+            target = target.to(device, non_blocking=True)
             optimizer.zero_grad(set_to_none=True)
-            loss = segmentation_loss(model(image), target)
+            with torch.autocast(device_type=device.type, dtype=torch.float16, enabled=use_amp):
+                loss = segmentation_loss(model(image), target)
             if not torch.isfinite(loss):
                 raise RuntimeError("Loss não finita; verificar entradas e taxa de aprendizado")
-            loss.backward()
-            optimizer.step()
+            scaler.scale(loss).backward()
+            scaler.step(optimizer)
+            scaler.update()
             loss_sum += float(loss.detach()) * image.shape[0]
             count += image.shape[0]
+            if step % 100 == 0 or step == len(train_batches):
+                print(
+                    json.dumps(
+                        {
+                            "phase": "train",
+                            "epoch": epoch,
+                            "step": step,
+                            "steps": len(train_batches),
+                            "images_seen": count,
+                            "elapsed_seconds": round(time.perf_counter() - epoch_started, 1),
+                        }
+                    ),
+                    flush=True,
+                )
         val, _ = evaluate_loader(model, val_batches, device, config.threshold)
         score = val["macro_dice"] if val["macro_dice"] is not None else 0.0
         row = {

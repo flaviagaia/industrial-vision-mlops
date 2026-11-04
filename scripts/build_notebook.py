@@ -28,8 +28,8 @@ e selecione GPU nas configurações, se disponível. O pacote está incorporado 
 clonar repositório, baixar pesos ou ativar internet. Bibliotecas esperadas: PyTorch, NumPy, Pillow e Matplotlib.
 
 O teste reservado será uma divisão do conjunto público anotado de treino. Os dados oficiais sem rótulos
-da competição não são usados para calcular qualidade. A primeira execução usa duas épocas para verificar
-o pipeline, não para prometer convergência ou um resultado competitivo.
+da competição não são usados para calcular qualidade. O experimento real usa até dez épocas com parada antecipada na validação.
+Isso não pressupõe convergência nem desempenho competitivo.
 
 [Severstal](https://www.kaggle.com/competitions/severstal-steel-defect-detection/data) ·
 [U-Net](https://arxiv.org/abs/1505.04597)
@@ -44,10 +44,10 @@ O limiar é fixo em 0,5. Não use resultados do teste para ajustar modelos ou li
 code("""from pathlib import Path
 
 USE_SYNTHETIC = False
-EPOCHS = 2
-RUN_NAME = "baseline_01"
+EPOCHS = 10
+RUN_NAME = "severstal_real_amp_01"
 SEED = 42
-BATCH_SIZE = 4
+BATCH_SIZE = 8
 DATA_DIR_OVERRIDE = None  # opcional: Path("/caminho/para/severstal")
 
 BASE = Path("/kaggle/working") if Path("/kaggle/working").exists() else Path.cwd()
@@ -133,6 +133,7 @@ O melhor checkpoint é selecionado por macro Dice de validação, com desempate 
 """)
 code("""config = Config(epochs=EPOCHS, batch_size=BATCH_SIZE, height=SIZE[0], width=SIZE[1],
                 base_channels=CHANNELS, seed=SEED, device=DEVICE,
+                num_workers=0 if USE_SYNTHETIC else 2, mixed_precision=True,
                 data_kind="synthetic" if USE_SYNTHETIC else "severstal")
 checkpoint = train(DATA_DIR, manifest, OUTPUT / "run", config)
 show_file(OUTPUT / "run" / "learning_curves.png", (11, 5))

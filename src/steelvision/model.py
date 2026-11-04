@@ -42,8 +42,9 @@ class UNet(nn.Module):
 
 def segmentation_loss(logits, target):
     """BCE + soft Dice; sigmoid não deve ser aplicada antes da BCEWithLogits."""
-    bce = F.binary_cross_entropy_with_logits(logits, target)
-    prob = logits.sigmoid()
+    # A soma espacial pode ultrapassar 65504 em FP16; a loss permanece em FP32.
+    bce = F.binary_cross_entropy_with_logits(logits.float(), target.float())
+    prob = logits.float().sigmoid()
     dims = (0, 2, 3)
     dice = (2 * (prob * target).sum(dims) + 1) / (prob.sum(dims) + target.sum(dims) + 1)
     return bce + 1 - dice.mean()

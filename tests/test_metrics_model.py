@@ -43,3 +43,13 @@ def test_empty_correct_images_do_not_inflate_global_dice():
     meter = SegmentationMetrics()
     meter.update(np.zeros_like(target), target, [str(i) for i in range(10)])
     assert meter.summary()["classes"][0]["dice"] == 0.0
+
+
+def test_half_precision_loss_does_not_overflow_spatial_reduction():
+    logits = torch.zeros(2, 4, 256, 256, dtype=torch.float16, requires_grad=True)
+    target = torch.ones(2, 4, 256, 256)
+    loss = segmentation_loss(logits, target)
+    assert loss.dtype == torch.float32
+    assert torch.isfinite(loss)
+    loss.backward()
+    assert torch.isfinite(logits.grad).all()
