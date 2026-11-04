@@ -1,0 +1,77 @@
+{
+  "classes": [
+    {
+      "class_id": 1,
+      "dice": 0.0,
+      "iou": 0.0,
+      "pixel_precision": null,
+      "pixel_recall": 0.0,
+      "positive_image_mean_dice": 0.0,
+      "positive_images": 118,
+      "image_presence_recall": 0.0,
+      "negative_images": 1767,
+      "negative_image_fp_rate": 0.0,
+      "tp_pixels": 0,
+      "fp_pixels": 0,
+      "fn_pixels": 121252
+    },
+    {
+      "class_id": 2,
+      "dice": 0.0,
+      "iou": 0.0,
+      "pixel_precision": null,
+      "pixel_recall": 0.0,
+      "positive_image_mean_dice": 0.0,
+      "positive_images": 32,
+      "image_presence_recall": 0.0,
+      "negative_images": 1853,
+      "negative_image_fp_rate": 0.0,
+      "tp_pixels": 0,
+      "fp_pixels": 0,
+      "fn_pixels": 27252
+    },
+    {
+      "class_id": 3,
+      "dice": 0.6140707134954918,
+      "iou": 0.4430750684576824,
+      "pixel_precision": 0.7057028943212726,
+      "pixel_recall": 0.5434998325538032,
+      "positive_image_mean_dice": 0.5643908619353989,
+      "positive_images": 747,
+      "image_presence_recall": 0.9384203480589023,
+      "negative_images": 1138,
+      "negative_image_fp_rate": 0.31370826010544817,
+      "tp_pixels": 2546344,
+      "fp_pixels": 1061894,
+      "fn_pixels": 2138743
+    },
+    {
+      "class_id": 4,
+      "dice": 0.3630973976386559,
+      "iou": 0.22181979374634936,
+      "pixel_precision": 0.3896696279506209,
+      "pixel_recall": 0.339917826713228,
+      "positive_image_mean_dice": 0.43886779934767906,
+      "positive_images": 122,
+      "image_presence_recall": 0.8770491803278688,
+      "negative_images": 1763,
+      "negative_image_fp_rate": 0.09415768576290415,
+      "tp_pixels": 319759,
+      "fp_pixels": 500831,
+      "fn_pixels": 620936
+    }
+  ],
+  "macro_dice": 0.24429202778353692,
+  "valid_classes": 4,
+  "conventions": "global pixel counts; absent global class -> null; per-image empty/empty Dice=1; positive-image Dice excludes empty targets; image presence means at least one predicted positive pixel",
+  "loss": 0.476334338415839,
+  "split": "test",
+  "threshold": 0.5,
+  "data_kind": "severstal",
+  "checkpoint_sha256": "80367a0d03aba7eae102186a0264b6efdc4e599d7c920566b913f1da5688da01",
+  "evaluation_resolution": [
+    128,
+    800
+  ],
+  "best_epoch": 7
+}

@@ -1,0 +1,30 @@
+{
+  "dataset": "severstal-steel-defect-detection",
+  "data_kind": "severstal",
+  "status": "completed",
+  "kaggle_version": 3,
+  "script_version_id": 365761846,
+  "url": "https://www.kaggle.com/code/flaviagg/steelvision-steel-defects-with-pytorch-u-net?scriptVersionId=365761846",
+  "source_commit": "3daac8d",
+  "images": 12568,
+  "splits": {
+    "train": 8798,
+    "val": 1885,
+    "test": 1885
+  },
+  "epochs_completed": 10,
+  "best_epoch": 7,
+  "best_val_macro_dice": 0.26627269723376507,
+  "test_macro_dice": 0.24429202778353692,
+  "device": "cuda",
+  "training_elapsed_seconds": 1463.8789193350003,
+  "amp_enabled": true,
+  "num_workers": 2,
+  "checkpoint_sha256": "80367a0d03aba7eae102186a0264b6efdc4e599d7c920566b913f1da5688da01",
+  "previous_version": {
+    "version": 2,
+    "status": "cancelled_for_runtime_optimization",
+    "test_evaluated": false
+  },
+  "note": "Treinamento real concluído; classes 1 e 2 com recall zero no teste. Baseline com limitações explícitas."
+}

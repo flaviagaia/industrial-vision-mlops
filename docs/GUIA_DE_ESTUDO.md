@@ -22,8 +22,8 @@ Compare resolução, largura da U-Net e aumentos com o mesmo manifesto. Alterar 
 
 ## 6. Explique o projeto em entrevista
 
-Após rodar nos dados reais, você poderá dizer, com os números efetivamente medidos:
+O treino real foi concluído. Consulte `docs/severstal_real/report.md` e use apenas os números medidos:
 
 > Desenvolvi um projeto de portfólio de segmentação de defeitos em aço com U-Net em PyTorch. Implementei decodificação RLE, divisão por grupos de imagens idênticas, aumentos sincronizados e avaliação por classe. Registrei as versões dos dados e do checkpoint e analisei falsos negativos e falsos positivos. O treinamento real foi executado no Kaggle; é um laboratório, não uma implantação industrial.
 
-Até concluir o treino real, descreva apenas a implementação e a validação sintética. ONNX e sustentação em produção não fazem parte desta primeira entrega.
+Nesta execução, foram usadas 12.568 imagens reais, com 10 épocas e seleção do checkpoint na época 7. O macro Dice de teste foi 0,2443, com recall zero nas classes 1 e 2. Explique essa limitação e diferencie o laboratório de uma implantação industrial. ONNX e sustentação em produção não fazem parte desta entrega.

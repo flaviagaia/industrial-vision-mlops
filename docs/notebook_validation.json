@@ -4,5 +4,9 @@
   "dataset": "synthetic",
   "epochs": 1,
   "standalone_embedded_source": true,
-  "note": "Does not validate Severstal training or Kaggle GPU execution"
+  "note": "Execução original sintética validada e execução real em CUDA concluída na versão 3 do Kaggle.",
+  "real_execution_completed": true,
+  "real_epochs": 10,
+  "real_dataset": "severstal-steel-defect-detection",
+  "kaggle_script_version_id": 365761846
 }

@@ -1,0 +1,39 @@
+{
+  "images": 12568,
+  "unique_file_hashes": 12568,
+  "splits": {
+    "train": {
+      "images": 8798,
+      "no_defect": 4149,
+      "positive_images_per_class": {
+        "1": 638,
+        "2": 178,
+        "3": 3594,
+        "4": 538
+      }
+    },
+    "val": {
+      "images": 1885,
+      "no_defect": 824,
+      "positive_images_per_class": {
+        "1": 141,
+        "2": 37,
+        "3": 809,
+        "4": 141
+      }
+    },
+    "test": {
+      "images": 1885,
+      "no_defect": 929,
+      "positive_images_per_class": {
+        "1": 118,
+        "2": 32,
+        "3": 747,
+        "4": 122
+      }
+    }
+  },
+  "resolution_counts": {
+    "1600x256": 12568
+  }
+}

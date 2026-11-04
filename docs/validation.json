@@ -1,9 +1,9 @@
 {
-  "tests_passed": 18,
+  "tests_passed": 19,
   "ruff": "passed",
   "synthetic_pipeline": "passed",
-  "real_severstal_training": "not_run_dataset_not_available",
-  "kaggle_gpu_execution": "not_run",
+  "real_severstal_training": "completed_10_epochs",
+  "kaggle_gpu_execution": "completed_cuda_T4_AMP",
   "notebook": {
     "notebook_valid": true,
     "code_cells_executed": 15,
@@ -11,5 +11,7 @@
     "epochs": 1,
     "standalone_embedded_source": true,
     "note": "Does not validate Severstal training or Kaggle GPU execution"
-  }
+  },
+  "real_checkpoint_hash_verified": true,
+  "real_checkpoint_load_cpu": "passed"
 }

@@ -4,7 +4,18 @@
 
 Projeto de portfólio de **Flávia Gaia** para praticar segmentação de imagens industriais com PyTorch. O pipeline lê as anotações Severstal, separa os dados, treina uma U-Net compacta, seleciona o checkpoint na validação e produz métricas por classe e análise visual dos erros.
 
-**Estado atual:** código implementado e fluxo validável com dados geométricos sintéticos. O treinamento e a avaliação no Severstal precisam ser executados após adicionar os dados da competição. Nenhuma métrica sintética representa desempenho em aço real. Este projeto não foi implantado em produção.
+**Estado atual:** treinamento real concluído no Severstal, com 12.568 imagens e 10 épocas em GPU T4. O melhor checkpoint foi selecionado na época 7. Macro Dice de teste: **0,2443**, em 1.885 imagens reservadas. As classes 1 e 2 tiveram recall zero: este baseline ainda apresenta limitações relevantes. [Veja o relatório completo](docs/severstal_real/report.md).
+
+| Classe | Dice no teste | Recall por pixel |
+|---|---:|---:|
+| 1 | 0,0000 | 0,0000 |
+| 2 | 0,0000 | 0,0000 |
+| 3 | 0,6141 | 0,5435 |
+| 4 | 0,3631 | 0,3399 |
+
+![Curvas do treinamento real](docs/severstal_real/learning_curves.png)
+
+As métricas reais estão em `docs/severstal_real/`. Os exemplos sintéticos permanecem identificados em `docs/synthetic_demo/`, apenas como verificação técnica do pipeline. Este projeto não foi implantado em produção.
 
 ## Comece pelo Kaggle
 
@@ -106,7 +117,7 @@ Os testes cobrem a orientação do RLE com exemplo manual, limites inválidos, C
 
 ## Escopo e próximos passos
 
-Esta primeira entrega cobre exploração, preparação, treinamento, avaliação e inferência. Exportação ONNX, serviço de inferência, MLflow, drift e canário/rollback serão extensões posteriores. Não há alegação de produção, de vínculo com a Usiminas ou de resultados já obtidos no dataset real.
+Esta primeira entrega cobre exploração, preparação, treinamento, avaliação e inferência. Exportação ONNX, serviço de inferência, MLflow, drift e canário/rollback serão extensões posteriores. O relatório documenta os resultados obtidos no dataset real. Não há alegação de implantação em produção ou de vínculo com a Usiminas.
 
 Dados e checkpoints não entram no Git. A licença MIT cobre o código deste repositório; dados Severstal continuam sujeitos às regras da competição. O notebook não redistribui as imagens.
 
