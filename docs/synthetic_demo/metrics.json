@@ -1,0 +1,77 @@
+{
+  "classes": [
+    {
+      "class_id": 1,
+      "dice": 0.7915567282321899,
+      "iou": 0.6550218340611353,
+      "pixel_precision": 0.6550218340611353,
+      "pixel_recall": 1.0,
+      "positive_image_mean_dice": 0.8098841344973722,
+      "positive_images": 4,
+      "image_presence_recall": 1.0,
+      "negative_images": 2,
+      "negative_image_fp_rate": 1.0,
+      "tp_pixels": 1800,
+      "fp_pixels": 948,
+      "fn_pixels": 0
+    },
+    {
+      "class_id": 2,
+      "dice": 0.8696682464454977,
+      "iou": 0.7693920335429769,
+      "pixel_precision": 0.9314720812182741,
+      "pixel_recall": 0.8155555555555556,
+      "positive_image_mean_dice": 0.8951219512195122,
+      "positive_images": 1,
+      "image_presence_recall": 1.0,
+      "negative_images": 5,
+      "negative_image_fp_rate": 1.0,
+      "tp_pixels": 367,
+      "fp_pixels": 27,
+      "fn_pixels": 83
+    },
+    {
+      "class_id": 3,
+      "dice": 0.01814442966009435,
+      "iou": 0.0091552734375,
+      "pixel_precision": 0.0091552734375,
+      "pixel_recall": 1.0,
+      "positive_image_mean_dice": 0.053463229179042414,
+      "positive_images": 2,
+      "image_presence_recall": 1.0,
+      "negative_images": 4,
+      "negative_image_fp_rate": 1.0,
+      "tp_pixels": 900,
+      "fp_pixels": 97404,
+      "fn_pixels": 0
+    },
+    {
+      "class_id": 4,
+      "dice": 0.0,
+      "iou": 0.0,
+      "pixel_precision": 0.0,
+      "pixel_recall": null,
+      "positive_image_mean_dice": null,
+      "positive_images": 0,
+      "image_presence_recall": null,
+      "negative_images": 6,
+      "negative_image_fp_rate": 0.6666666666666666,
+      "tp_pixels": 0,
+      "fp_pixels": 1963,
+      "fn_pixels": 0
+    }
+  ],
+  "macro_dice": 0.4198423510844455,
+  "valid_classes": 4,
+  "conventions": "global pixel counts; absent global class -> null; per-image empty/empty Dice=1; positive-image Dice excludes empty targets; image presence means at least one predicted positive pixel",
+  "loss": 1.5059394041697185,
+  "split": "test",
+  "threshold": 0.5,
+  "data_kind": "synthetic",
+  "checkpoint_sha256": "4e6ee2d154194b286408990e2f9bb3606265efb3ff4dff86e99a208c2b3bd054",
+  "evaluation_resolution": [
+    64,
+    256
+  ],
+  "best_epoch": 8
+}

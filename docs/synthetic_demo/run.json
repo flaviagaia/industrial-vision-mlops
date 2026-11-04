@@ -1,0 +1,25 @@
+{
+  "config": {
+    "epochs": 8,
+    "batch_size": 4,
+    "height": 64,
+    "width": 256,
+    "base_channels": 8,
+    "learning_rate": 0.001,
+    "seed": 42,
+    "num_workers": 0,
+    "patience": 4,
+    "threshold": 0.5,
+    "device": "cpu",
+    "data_kind": "synthetic"
+  },
+  "device": "cpu",
+  "torch": "2.15.0",
+  "python": "3.12.14",
+  "numpy": "2.5.4",
+  "git_commit": null,
+  "manifest_sha256": "35c39a694c4deff09d5bf3f3d0de5c0f301ba6b1f636304120c0228df943c229",
+  "note": "Synthetic smoke test; not a Severstal result",
+  "elapsed_seconds": 2.88390995899681,
+  "best_val_macro_dice": 0.483708575682154
+}

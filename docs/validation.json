@@ -1,0 +1,15 @@
+{
+  "tests_passed": 18,
+  "ruff": "passed",
+  "synthetic_pipeline": "passed",
+  "real_severstal_training": "not_run_dataset_not_available",
+  "kaggle_gpu_execution": "not_run",
+  "notebook": {
+    "notebook_valid": true,
+    "code_cells_executed": 15,
+    "dataset": "synthetic",
+    "epochs": 1,
+    "standalone_embedded_source": true,
+    "note": "Does not validate Severstal training or Kaggle GPU execution"
+  }
+}

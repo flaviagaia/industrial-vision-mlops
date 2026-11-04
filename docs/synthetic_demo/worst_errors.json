@@ -1,0 +1,200 @@
+[
+  {
+    "image_id": "synthetic_0012.png",
+    "class_id": 3,
+    "dice": 0.0,
+    "tp_pixels": 0,
+    "fp_pixels": 16384,
+    "fn_pixels": 0,
+    "true_positive_pixels": 0
+  },
+  {
+    "image_id": "synthetic_0024.png",
+    "class_id": 3,
+    "dice": 0.0,
+    "tp_pixels": 0,
+    "fp_pixels": 16384,
+    "fn_pixels": 0,
+    "true_positive_pixels": 0
+  },
+  {
+    "image_id": "synthetic_0028.png",
+    "class_id": 3,
+    "dice": 0.0,
+    "tp_pixels": 0,
+    "fp_pixels": 16384,
+    "fn_pixels": 0,
+    "true_positive_pixels": 0
+  },
+  {
+    "image_id": "synthetic_0032.png",
+    "class_id": 3,
+    "dice": 0.0,
+    "tp_pixels": 0,
+    "fp_pixels": 16384,
+    "fn_pixels": 0,
+    "true_positive_pixels": 0
+  },
+  {
+    "image_id": "synthetic_0028.png",
+    "class_id": 4,
+    "dice": 0.0,
+    "tp_pixels": 0,
+    "fp_pixels": 565,
+    "fn_pixels": 0,
+    "true_positive_pixels": 0
+  },
+  {
+    "image_id": "synthetic_0012.png",
+    "class_id": 4,
+    "dice": 0.0,
+    "tp_pixels": 0,
+    "fp_pixels": 467,
+    "fn_pixels": 0,
+    "true_positive_pixels": 0
+  },
+  {
+    "image_id": "synthetic_0032.png",
+    "class_id": 4,
+    "dice": 0.0,
+    "tp_pixels": 0,
+    "fp_pixels": 466,
+    "fn_pixels": 0,
+    "true_positive_pixels": 0
+  },
+  {
+    "image_id": "synthetic_0024.png",
+    "class_id": 4,
+    "dice": 0.0,
+    "tp_pixels": 0,
+    "fp_pixels": 465,
+    "fn_pixels": 0,
+    "true_positive_pixels": 0
+  },
+  {
+    "image_id": "synthetic_0012.png",
+    "class_id": 2,
+    "dice": 0.0,
+    "tp_pixels": 0,
+    "fp_pixels": 9,
+    "fn_pixels": 0,
+    "true_positive_pixels": 0
+  },
+  {
+    "image_id": "synthetic_0024.png",
+    "class_id": 2,
+    "dice": 0.0,
+    "tp_pixels": 0,
+    "fp_pixels": 6,
+    "fn_pixels": 0,
+    "true_positive_pixels": 0
+  },
+  {
+    "image_id": "synthetic_0032.png",
+    "class_id": 2,
+    "dice": 0.0,
+    "tp_pixels": 0,
+    "fp_pixels": 5,
+    "fn_pixels": 0,
+    "true_positive_pixels": 0
+  },
+  {
+    "image_id": "synthetic_0022.png",
+    "class_id": 1,
+    "dice": 0.0,
+    "tp_pixels": 0,
+    "fp_pixels": 2,
+    "fn_pixels": 0,
+    "true_positive_pixels": 0
+  },
+  {
+    "image_id": "synthetic_0022.png",
+    "class_id": 2,
+    "dice": 0.0,
+    "tp_pixels": 0,
+    "fp_pixels": 2,
+    "fn_pixels": 0,
+    "true_positive_pixels": 0
+  },
+  {
+    "image_id": "synthetic_0026.png",
+    "class_id": 2,
+    "dice": 0.0,
+    "tp_pixels": 0,
+    "fp_pixels": 2,
+    "fn_pixels": 0,
+    "true_positive_pixels": 0
+  },
+  {
+    "image_id": "synthetic_0026.png",
+    "class_id": 1,
+    "dice": 0.0,
+    "tp_pixels": 0,
+    "fp_pixels": 1,
+    "fn_pixels": 0,
+    "true_positive_pixels": 0
+  },
+  {
+    "image_id": "synthetic_0022.png",
+    "class_id": 3,
+    "dice": 0.053463229179042414,
+    "tp_pixels": 450,
+    "fp_pixels": 15934,
+    "fn_pixels": 0,
+    "true_positive_pixels": 450
+  },
+  {
+    "image_id": "synthetic_0026.png",
+    "class_id": 3,
+    "dice": 0.053463229179042414,
+    "tp_pixels": 450,
+    "fp_pixels": 15934,
+    "fn_pixels": 0,
+    "true_positive_pixels": 450
+  },
+  {
+    "image_id": "synthetic_0028.png",
+    "class_id": 1,
+    "dice": 0.6189821182943603,
+    "tp_pixels": 450,
+    "fp_pixels": 554,
+    "fn_pixels": 0,
+    "true_positive_pixels": 450
+  },
+  {
+    "image_id": "synthetic_0012.png",
+    "class_id": 1,
+    "dice": 0.8687258687258688,
+    "tp_pixels": 450,
+    "fp_pixels": 136,
+    "fn_pixels": 0,
+    "true_positive_pixels": 450
+  },
+  {
+    "image_id": "synthetic_0032.png",
+    "class_id": 1,
+    "dice": 0.8746355685131195,
+    "tp_pixels": 450,
+    "fp_pixels": 129,
+    "fn_pixels": 0,
+    "true_positive_pixels": 450
+  },
+  {
+    "image_id": "synthetic_0024.png",
+    "class_id": 1,
+    "dice": 0.8771929824561403,
+    "tp_pixels": 450,
+    "fp_pixels": 126,
+    "fn_pixels": 0,
+    "true_positive_pixels": 450
+  },
+  {
+    "image_id": "synthetic_0028.png",
+    "class_id": 2,
+    "dice": 0.8951219512195122,
+    "tp_pixels": 367,
+    "fp_pixels": 3,
+    "fn_pixels": 83,
+    "true_positive_pixels": 450
+  }
+]

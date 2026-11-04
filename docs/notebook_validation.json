@@ -1,0 +1,8 @@
+{
+  "notebook_valid": true,
+  "code_cells_executed": 15,
+  "dataset": "synthetic",
+  "epochs": 1,
+  "standalone_embedded_source": true,
+  "note": "Does not validate Severstal training or Kaggle GPU execution"
+}
