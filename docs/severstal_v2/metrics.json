@@ -1,0 +1,85 @@
+{
+  "classes": [
+    {
+      "class_id": 1,
+      "dice": 0.3649625491292945,
+      "iou": 0.22321357161265096,
+      "pixel_precision": 0.3261532568417943,
+      "pixel_recall": 0.41425517396350653,
+      "positive_image_mean_dice": 0.5217062480339503,
+      "positive_images": 118,
+      "image_presence_recall": 0.9491525423728814,
+      "negative_images": 1767,
+      "negative_image_fp_rate": 0.2631578947368421,
+      "tp_pixels": 200944,
+      "fp_pixels": 415159,
+      "fn_pixels": 284129
+    },
+    {
+      "class_id": 2,
+      "dice": 0.3964441804217762,
+      "iou": 0.24722817602074568,
+      "pixel_precision": 0.36932649205056645,
+      "pixel_recall": 0.42785964848007474,
+      "positive_image_mean_dice": 0.5022169136515627,
+      "positive_images": 32,
+      "image_presence_recall": 0.875,
+      "negative_images": 1853,
+      "negative_image_fp_rate": 0.06475984889368591,
+      "tp_pixels": 46715,
+      "fp_pixels": 79772,
+      "fn_pixels": 62468
+    },
+    {
+      "class_id": 3,
+      "dice": 0.6379066388746928,
+      "iou": 0.4683281315956785,
+      "pixel_precision": 0.6054566545837136,
+      "pixel_recall": 0.6740319782185089,
+      "positive_image_mean_dice": 0.6227029616793671,
+      "positive_images": 747,
+      "image_presence_recall": 0.9785809906291834,
+      "negative_images": 1138,
+      "negative_image_fp_rate": 0.4771528998242531,
+      "tp_pixels": 12625630,
+      "fp_pixels": 8227440,
+      "fn_pixels": 6105870
+    },
+    {
+      "class_id": 4,
+      "dice": 0.5147763177770929,
+      "iou": 0.3465985116845407,
+      "pixel_precision": 0.4049381007208765,
+      "pixel_recall": 0.7063796224793487,
+      "positive_image_mean_dice": 0.6407783347966023,
+      "positive_images": 122,
+      "image_presence_recall": 0.9754098360655737,
+      "negative_images": 1763,
+      "negative_image_fp_rate": 0.11117413499716393,
+      "tp_pixels": 2656366,
+      "fp_pixels": 3903565,
+      "fn_pixels": 1104170
+    }
+  ],
+  "macro_dice": 0.4785224215507141,
+  "valid_classes": 4,
+  "conventions": "global pixel counts; absent global class -> null; per-image empty/empty Dice=1; positive-image Dice excludes empty targets; image presence means at least one predicted positive pixel",
+  "manifest_sha256": "2396ef5baa15452b7e53677922cf3ac99487a4264f9a27188346db9c6a7240fb",
+  "verified_splits": [
+    "test"
+  ],
+  "data_kind": "severstal",
+  "split": "test",
+  "evaluation_role": "historical_known_test",
+  "resolution": "original",
+  "postprocessing": "native_tiles_mean_probabilities_then_threshold",
+  "thresholds": [
+    0.9000000000000001,
+    0.9000000000000001,
+    0.8500000000000001,
+    0.9500000000000001
+  ],
+  "best_epoch": 4,
+  "checkpoint_sha256": "bd89e8b33ed9aefa7cd1f8b722caa83685b3dfaa62581feb526994cef90b18d1",
+  "calibration_sha256": "7994fd8e3fbe6d6b8562c6faa42a460ba7bed953d09de7abf46d104b260671d9"
+}

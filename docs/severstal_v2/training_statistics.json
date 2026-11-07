@@ -1,0 +1,22 @@
+{
+  "source_split": "train",
+  "positive_images": [
+    638,
+    178,
+    3594,
+    538
+  ],
+  "positive_pixels": [
+    2841706,
+    599804,
+    91501318,
+    18414167
+  ],
+  "pos_weight": [
+    20.0,
+    20.0,
+    6.195458315633179,
+    13.95351037276463
+  ],
+  "formula": "sqrt(negative/positive) clipped; multilabel max sqrt(N/class_count)"
+}

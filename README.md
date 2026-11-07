@@ -115,6 +115,12 @@ artifacts/
 
 As figuras comparam entrada, máscara real e predição. Amarelo, roxo, ciano e rosa representam classes 1 a 4. Os identificadores numéricos são preservados sem atribuir nomes de defeitos não fornecidos nos dados.
 
+## Resultado real da versão 2
+
+A [versão 5 no Kaggle](https://www.kaggle.com/code/flaviagg/steelvision-steel-defects-with-pytorch-u-net?scriptVersionId=366705948) concluiu quatro épocas e todo o fluxo real. Macro Dice no teste histórico conhecido: **0,4785**, na resolução original; classes 1–4: **0,3650 / 0,3964 / 0,6379 / 0,5148**. O encoder ImageNet ficou congelado e os limiares foram calibrados somente na validação.
+
+Veja o [relatório com métricas por classe, incidente e limitações](docs/severstal_v2/report.md). O baseline usa outra resolução; não é uma comparação controlada direta. Há falsos positivos relevantes, e as ablações ainda não foram executadas.
+
 ## Verificação
 
 ```bash

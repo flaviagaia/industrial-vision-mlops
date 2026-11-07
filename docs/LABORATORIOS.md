@@ -1,7 +1,7 @@
 # Quatro laboratórios e posts futuros
 
 1. **Inspeção visual industrial:** segmentação PyTorch, classes raras, resolução nativa, integridade,
-   retomada e avaliação. Baseline real concluído; versão 2 em evolução.
+   retomada e avaliação. Baseline e versão 2 reais concluídos; [evidências da v2](severstal_v2/report.md).
 2. **Otimização de inferência:** exportação ONNX e comparação controlada de qualidade, latência p50/p95,
    memória e hardware.
 3. **Sustentação e incidentes:** corrupção de imagem, mudanças de iluminação/desfoque, regressão de

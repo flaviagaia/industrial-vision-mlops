@@ -1,0 +1,26 @@
+[
+  {
+    "epoch": 1,
+    "train_loss": 1.1311882003975826,
+    "val_loss": null,
+    "val_macro_dice": 0.2578055929909214
+  },
+  {
+    "epoch": 2,
+    "train_loss": 0.9220649364401629,
+    "val_loss": null,
+    "val_macro_dice": 0.3988107938583057
+  },
+  {
+    "epoch": 3,
+    "train_loss": 0.8692631203360275,
+    "val_loss": null,
+    "val_macro_dice": 0.38999075082686985
+  },
+  {
+    "epoch": 4,
+    "train_loss": 0.8339810180214217,
+    "val_loss": null,
+    "val_macro_dice": 0.4680952043120081
+  }
+]
