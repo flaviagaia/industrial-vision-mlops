@@ -45,11 +45,12 @@ A retomada é exata na fronteira de época; falha no meio de uma época repete e
 """)
 code("""from pathlib import Path
 USE_SYNTHETIC = False
-RUN_NAME = "severstal_v2_native_resnet18_01"
+RUN_NAME = "severstal_v2_native_resnet18_02"
 EPOCHS = 4
 BATCH_SIZE = 8
 ARCHITECTURE = "resnet18_unet"
 PRETRAINED = True
+TRAIN_ENCODER = False
 BALANCED_SAMPLING = True
 WEIGHTED_LOSS = True
 RESUME_FROM = None  # ex.: Path("/kaggle/working/.../run/last.pt")
@@ -103,8 +104,10 @@ print(json.dumps({k:v for k,v in statistics.items() if k != "sample_weights"}, i
 md("""## 4. Treino com pesos e amostragem exclusivos do treino
 Patches de 256 × 400 preservam a escala original. Metade dos recortes de imagens positivas tenta incluir
 um pixel anotado; os demais são uniformes. Imagens normais continuam presentes.
-O encoder pré-treinado recebe normalização ImageNet incorporada; suas estatísticas BatchNorm ficam
-congeladas para lotes pequenos. A loss e as reduções espaciais permanecem em FP32 sob AMP.
+O encoder pré-treinado recebe normalização ImageNet incorporada e fica congelado neste candidato
+(`TRAIN_ENCODER=False`): somente o decoder aprende. Fine-tuning é uma ablação separada.
+As estatísticas BatchNorm ficam congeladas. A loss permanece em FP32 sob AMP e há clipping de gradientes.
+A primeira tentativa de fine-tuning em FP16 falhou por loss não finita; não gerou métricas de teste.
 
 `last.pt` salva modelo, otimizador, GradScaler, RNGs, histórico e critério de parada a cada época.
 A retomada verifica manifesto, código e configuração. `best.pt` preserva o checkpoint de melhor
@@ -116,6 +119,7 @@ code("""config = AdvancedConfig(
     patch_width=64 if USE_SYNTHETIC else 400,
     architecture="unet" if USE_SYNTHETIC else ARCHITECTURE,
     pretrained=False if USE_SYNTHETIC else PRETRAINED,
+    train_encoder=TRAIN_ENCODER,
     base_channels=4 if USE_SYNTHETIC else 16,
     num_workers=0 if USE_SYNTHETIC else 2,
     device="cpu" if USE_SYNTHETIC else "auto",

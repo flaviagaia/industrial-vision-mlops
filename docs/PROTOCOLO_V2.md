@@ -10,7 +10,7 @@ não resultados de inspeção industrial.
 |---|---|---|
 | Classes raras | Amostragem por presença multirrótulo e BCE com pesos limitados | Estatísticas calculadas somente no treino |
 | Resolução | Recortes 256 × 400 sem reduzir a imagem inteira | Mosaico cobre toda a imagem, inclusive bordas |
-| Encoder | ResNet18 com pesos ImageNet opcionais, normalização incorporada e BatchNorm congelada | Carregamento real dos pesos; teste de forma sem rede |
+| Encoder | ResNet18 com pesos ImageNet opcionais, normalização incorporada e encoder congelado por padrão | Carregamento real dos pesos; teste de forma sem rede |
 | Calibração | Um limiar por classe, ajustado apenas na validação | Busca por contagens exatas; teste contra força bruta |
 | Avaliação | Resolução original e mesmo mosaico da inferência | Validação, calibração, teste e predição compartilham função |
 | Retomada | `last.pt` atômico com modelo, otimizador, scaler, RNGs e histórico | Duas épocas contínuas equivalem a uma + retomada |
@@ -20,6 +20,11 @@ não resultados de inspeção industrial.
 A loss usa FP32 para reduzir somas de pixels com segurança sob AMP. O encoder pré-treinado é
 baixado da fonte oficial do Torchvision; não há fallback silencioso. Para retomar ou carregar um
 checkpoint existente não é necessário baixar pesos novamente.
+
+A tentativa Kaggle v4 (366704675), com fine-tuning em FP16, foi interrompida por loss não finita
+na primeira época. O candidato seguinte congela o encoder (`train_encoder=False`), treina o decoder
+e limita a norma dos gradientes a 1,0. Inferência rejeita logits não finitos. Fine-tuning deve ser
+um experimento separado; não se presume que a proteção de CPU valide estabilidade em CUDA.
 
 ## Retomada
 

@@ -8,7 +8,7 @@ from .model import UNet, block
 
 
 class ResNetUNet(nn.Module):
-    def __init__(self, pretrained=False):
+    def __init__(self, pretrained=False, train_encoder=False):
         super().__init__()
         from torchvision.models import ResNet18_Weights, resnet18
 
@@ -18,6 +18,10 @@ class ResNetUNet(nn.Module):
         self.layers = nn.ModuleList(
             [encoder.layer1, encoder.layer2, encoder.layer3, encoder.layer4]
         )
+        # Extração de características congelada é o padrão do experimento curto.
+        # Fine-tuning deve ser uma ablação explícita, com orçamento e LR próprios.
+        for module in [self.stem, *self.layers]:
+            module.requires_grad_(train_encoder)
         self.decoders = nn.ModuleList(
             [block(768, 128), block(256, 64), block(128, 32), block(96, 32)]
         )
@@ -50,7 +54,10 @@ class ResNetUNet(nn.Module):
 
 def build_model(config, initialize_pretrained=False):
     if config.architecture == "resnet18_unet":
-        return ResNetUNet(pretrained=initialize_pretrained and config.pretrained)
+        return ResNetUNet(
+            pretrained=initialize_pretrained and config.pretrained,
+            train_encoder=config.train_encoder,
+        )
     if config.architecture == "unet":
         return UNet(config.base_channels)
     raise ValueError(f"Arquitetura desconhecida: {config.architecture}")

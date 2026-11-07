@@ -155,3 +155,31 @@ def test_transfer_encoder_shape_without_network():
     model = build_model(config, initialize_pretrained=False).eval()
     with torch.inference_mode():
         assert model(torch.zeros(1, 3, 64, 96)).shape == (1, 4, 64, 96)
+
+
+def test_frozen_encoder_preserves_features_during_decoder_training():
+    pytest.importorskip("torchvision")
+    from steelvision.transfer import ResNetUNet
+
+    model = ResNetUNet(pretrained=False).train()
+    assert not any(p.requires_grad for p in model.stem.parameters())
+    assert not any(p.requires_grad for p in model.layers.parameters())
+    before = model.stem[0].weight.detach().clone()
+    optimizer = torch.optim.AdamW(model.parameters(), lr=0.001)
+    model(torch.rand(2, 3, 64, 96)).square().mean().backward()
+    assert model.head.weight.grad is not None
+    assert model.stem[0].weight.grad is None
+    optimizer.step()
+    assert torch.equal(before, model.stem[0].weight)
+    assert not model.stem[1].training
+
+
+def test_native_inference_rejects_nonfinite_logits():
+    class Invalid(torch.nn.Module):
+        def forward(self, image):
+            return torch.full((len(image), 4, *image.shape[-2:]), float("nan"))
+
+    with pytest.raises(RuntimeError, match="não finitos"):
+        native_probabilities(
+            Invalid(), np.zeros((32, 32, 3), dtype=np.float32), (32, 32), torch.device("cpu")
+        )

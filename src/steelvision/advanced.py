@@ -39,6 +39,7 @@ class AdvancedConfig:
     patch_width: int = 400
     architecture: str = "resnet18_unet"
     pretrained: bool = True
+    train_encoder: bool = False
     base_channels: int = 16
     learning_rate: float = 0.0003
     seed: int = 42
@@ -228,8 +229,10 @@ def train_advanced(data_dir, manifest, output_dir, config, resume=None):
             with torch.autocast(device_type=device.type, dtype=torch.float16, enabled=amp):
                 loss = segmentation_loss(model(image), target, pos_weight)
             if not torch.isfinite(loss):
-                raise RuntimeError("Loss não finita")
+                raise RuntimeError(f"Loss não finita na época {epoch}, passo {step}")
             scaler.scale(loss).backward()
+            scaler.unscale_(optimizer)
+            torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
             scaler.step(optimizer)
             scaler.update()
             loss_sum += float(loss.detach()) * len(image)

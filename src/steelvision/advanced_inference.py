@@ -26,6 +26,8 @@ def native_probabilities(model, image, patch_size, device, batch_size=4, amp=Tru
             device_type=device.type, dtype=torch.float16, enabled=amp and device.type == "cuda"
         ):
             logits = model(tensor)
+        if not torch.isfinite(logits).all():
+            raise RuntimeError("Logits não finitos na inferência nativa")
         if logits.shape[-2:] != (ph, pw):
             logits = F.interpolate(
                 logits.float(), size=(ph, pw), mode="bilinear", align_corners=False
