@@ -17,6 +17,15 @@ Projeto de portfólio de **Flávia Gaia** para praticar segmentação de imagens
 
 As métricas reais estão em `docs/severstal_real/`. Os exemplos sintéticos permanecem identificados em `docs/synthetic_demo/`, apenas como verificação técnica do pipeline. Este projeto não foi implantado em produção.
 
+## Versão 2 implementada
+
+O notebook [02_severstal_improved.ipynb](notebooks/02_severstal_improved.ipynb) incorpora
+balanceamento, BCE ponderada, recortes nativos, encoder ResNet18 opcional, calibração por classe,
+avaliação original, verificação de hashes e retomada na fronteira de época.
+Veja o [protocolo v2](docs/PROTOCOLO_V2.md). O baseline e suas limitações permanecem preservados;
+a implementação v2 não é, por si só, evidência de melhora de métricas.
+Instalação completa: `python -m pip install -e '.[dev,vision]'`.
+
 ## Comece pelo Kaggle
 
 1. Abra a [competição Severstal](https://www.kaggle.com/competitions/severstal-steel-defect-detection/data), entre na sua conta e aceite as regras para acessar os dados.

@@ -97,7 +97,10 @@ def explore(data_dir, manifest_path, output_dir, size=(128, 800)):
 def plot_history(history, output):
     fig, axes = plt.subplots(1, 2, figsize=(10, 4), constrained_layout=True)
     axes[0].plot([r["epoch"] for r in history], [r["train_loss"] for r in history], label="treino")
-    axes[0].plot([r["epoch"] for r in history], [r["val_loss"] for r in history], label="validação")
+    if any(r["val_loss"] is not None for r in history):
+        axes[0].plot(
+            [r["epoch"] for r in history], [r["val_loss"] for r in history], label="validação"
+        )
     axes[0].set_title("BCE + soft Dice")
     axes[0].legend()
     axes[1].plot([r["epoch"] for r in history], [r["val_macro_dice"] for r in history])

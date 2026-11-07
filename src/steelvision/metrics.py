@@ -20,7 +20,12 @@ class SegmentationMetrics:
         self.rows = []
 
     def update(self, probabilities, target, image_ids, threshold=0.5):
-        pred = np.asarray(probabilities) >= threshold
+        thresholds = np.asarray(threshold)
+        if thresholds.ndim == 1:
+            if thresholds.shape != (4,):
+                raise ValueError("Forneça quatro limiares ou um escalar")
+            thresholds = thresholds.reshape(1, 4, 1, 1)
+        pred = np.asarray(probabilities) >= thresholds
         true = np.asarray(target) > 0
         if pred.shape != true.shape or pred.ndim != 4 or pred.shape[1] != 4:
             raise ValueError("Esperado [batch, 4, altura, largura] para predição e alvo")
